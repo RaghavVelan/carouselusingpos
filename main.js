@@ -1,7 +1,7 @@
 const cardsContainer = document.querySelector(".cardContainer")
 const expandBtn = document.querySelector(".expandBtn")
-const prevBtn = document.querySelector(".PrevBtn")
-const nextBtn = document.querySelector(".NextBtn")
+// const prevBtn = document.querySelector(".PrevBtn")
+// const nextBtn = document.querySelector(".NextBtn")
 
 stack();
 
@@ -34,30 +34,3 @@ function stack(){
         card.style.left = `calc(50% + ${index * 1}rem)`; 
     });
 }
-
-// nextBtn.addEventListener("click", () => {
-//     const firstCard = cardsContainer.querySelector(".card");
-//     if (firstCard) {
-//         cardsContainer.removeChild(firstCard);
-//         cardsContainer.appendChild(firstCard);
-//         carousel();
-//     }
-// });
-
-nextBtn.addEventListener("click", () => {
-    const firstCard = cardsContainer.querySelector(".card");
-    if (firstCard) {
-        firstCard.style.transition = "transform 0.25s ease, opacity 0.25s ease";
-        firstCard.style.transform = "translate(0%, -50%)";
-        firstCard.style.opacity = "0"; // Fade out effect
-
-        setTimeout(() => {
-            firstCard.style.transition = "none";
-            firstCard.style.transform = "translate(-0%, -50%);";
-            firstCard.style.opacity = "1"; // Reset opacity
-            cardsContainer.removeChild(firstCard);
-            cardsContainer.appendChild(firstCard);
-            carousel(); // Re-apply the carousel layout after the DOM changes
-        }, 1000); // Match the duration of the transition
-    }
-});
