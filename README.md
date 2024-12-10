@@ -27,7 +27,3 @@ This project demonstrates a simple transformation from a vertical stack of cards
 ## Contributing
 
 Feel free to submit pull requests for any improvements or bug fixes.
-
-## License
-
-This project is licensed under the MIT License.
