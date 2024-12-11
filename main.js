@@ -9,6 +9,7 @@ stack();
 
 
 expandBtn.addEventListener("click", () => {
+    currentIndex = 0;
     if(cardsContainer.classList.contains("carouselToggle")){
         cardsContainer.classList.remove("carouselToggle");
         requestAnimationFrame(carousel);
