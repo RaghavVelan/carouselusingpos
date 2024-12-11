@@ -70,8 +70,7 @@
 }
 
 .btnContainer{
-    display: flex;
-    gap: 1rem;
+    display: none;
 }
 
 .btnContainer button{
@@ -95,6 +94,16 @@
 
 .btnContainer button:hover svg{
     fill: #000000;
+}
+
+.cardContainer.carouselToggle ~ .btnContainer{
+    display: none;
+    gap: 1rem;
+}
+
+.cardContainer ~ .btnContainer{
+    display: flex;
+    gap: 1rem;
 }
 
 .cardContainer.carouselToggle ~ .btnContainer button{
