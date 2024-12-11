@@ -4,9 +4,10 @@ const prevBtn = document.querySelector(".PrevBtn")
 const nextBtn = document.querySelector(".NextBtn")
 
 let currentIndex = 0;
+const cardWidth = 300;
+const cardGap = 16;
 
 stack();
-
 
 expandBtn.addEventListener("click", () => {
     currentIndex = 0;
@@ -25,8 +26,7 @@ function carousel(){
     const cards = document.querySelectorAll(".card");
     cards.forEach((card, index) => {
         card.style.zIndex = 0;
-        // card.style.left = `${(index * 300) + (16 * (index + 1))}px`;
-        card.style.left = `${((index * 300) + (16 * (index + 1))) - (316 * currentIndex)}px`; 
+        card.style.left = `${((index * cardWidth) + (cardGap * (index + 1))) - ((cardWidth + cardGap) * currentIndex)}px`; 
     })
 }
 
