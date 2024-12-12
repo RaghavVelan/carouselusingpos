@@ -9,6 +9,9 @@ const cardGap = 16;
 
 let touchStartX = 0;
 let touchEndX = 0;
+let dragStartX = 0;
+let dragEndX = 0;
+let isDragging = false;
 
 stack();
 
@@ -91,6 +94,40 @@ function handleSwipe() {
         if (currentIndex > 0) {
             currentIndex--;
             carousel();
+        }
+    }
+}
+
+cardsContainer.addEventListener("mousedown", (e) => {
+    // e.target.style.cursor = "grabbing";
+    document.querySelectorAll(".card").forEach((card) => {
+        card.style.cursor = "grabbing";
+    })
+    dragStartX = e.clientX;
+    isDragging = true;
+});
+
+cardsContainer.addEventListener("mouseup", (e) => {
+    dragEndX = e.clientX;
+    handleDrag()
+});
+
+function handleDrag(){
+    if (isDragging) {
+        isDragging = false;
+        if(dragStartX > dragEndX){
+            // Swiped left, move to next card
+            if (currentIndex < document.querySelectorAll(".card").length - 1) {
+                currentIndex++;
+                carousel();
+            }
+        }
+        if(dragStartX < dragEndX){
+            // Swiped right, move to previous card
+            if (currentIndex > 0) {
+                currentIndex--;
+                carousel();
+            }
         }
     }
 }
