@@ -13,6 +13,8 @@ let dragStartX = 0;
 let dragEndX = 0;
 let isDragging = false;
 
+let isStacked = true;
+
 stack();
 
 expandBtn.addEventListener("click", () => {
@@ -29,6 +31,7 @@ expandBtn.addEventListener("click", () => {
 })
 
 function carousel(){
+    isStacked = false;
     const cards = document.querySelectorAll(".card");
     cards.forEach((card, index) => {
         card.style.zIndex = 0;
@@ -38,6 +41,7 @@ function carousel(){
 }
 
 function stack(){
+    isStacked = true;
     const cards = document.querySelectorAll(".card");
     cards.forEach((card, index) => {
         let cardIndex = cards.length - index;
@@ -82,14 +86,14 @@ cardsContainer.addEventListener("touchend", (e) => {
 });
 
 function handleSwipe() {
-    if (touchEndX < touchStartX) {
+    if (touchEndX < touchStartX && isStacked === false) {
         // Swiped left, move to next card
         if (currentIndex < document.querySelectorAll(".card").length - 1) {
             currentIndex++;
             carousel();
         }
     }
-    if (touchEndX > touchStartX) {
+    if (touchEndX > touchStartX && isStacked === false) {
         // Swiped right, move to previous card
         if (currentIndex > 0) {
             currentIndex--;
@@ -113,7 +117,7 @@ cardsContainer.addEventListener("mouseup", (e) => {
 });
 
 function handleDrag(){
-    if (isDragging) {
+    if (isDragging && isStacked === false) {
         isDragging = false;
         if(dragStartX > dragEndX){
             // Swiped left, move to next card
